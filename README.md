@@ -1,6 +1,6 @@
 # Semiconductor process modelling and experiments
 
-I built a small process modelling toolkit because I wanted to understand how wafer fabrication settings affect oxide growth and how to choose a process recipe systematically. It fits a model to public silicon oxidation measurements, then runs simulated etch and thin-film deposition experiments to find settings that meet a rate and uniformity goal. The experiments are simulations, not measurements from a fabrication tool.
+I built a tool for exploring how thin layers grow on silicon because I wanted a clearer way to choose the settings used to make them. Silicon wafers are the thin slices used to make computer chips, and a recipe is a set of machine settings for treating them. It fits a model to public silicon oxidation measurements, then runs simulated etch and thin-film deposition experiments to find settings that meet a rate and uniformity goal. The experiments are simulations, not measurements from a fabrication tool.
 
 To try it with Python 3.10 or newer:
 
