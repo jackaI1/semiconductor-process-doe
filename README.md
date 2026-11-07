@@ -2,9 +2,7 @@ I merged this into my existing [lifeos-desk-node project](https://github.com/jac
 
 The move keeps the original layout, including `semiconductor_doe/__init__.py`, `semiconductor_doe/experiment.py`, `semiconductor_doe/oxidation.py`, `semiconductor_doe/__main__.py`. I replaced the README with the report below and left out Git history, installed dependencies, caches and generated build output from the hub copy.
 
-The 1 files of test code and supporting test helpers moved with the code. No project-specific GitHub Actions workflow was retained; the report records the omitted checks, and the test sources can be run locally from the linked folder.
-
-Omitted workflows: `semiconductor-process-doe-tests.yml`: The relocated workflow did not complete successfully within the migration batch. Local test sources remain available.
+The project checks are configured in the hub at `.github/workflows/semiconductor-process-doe-tests.yml`, with commands run from this project folder and changes filtered to its paths.
 
 ---
 
@@ -41,3 +39,6 @@ Least squares fits a quadratic response surface, including interactions and a ru
 For thickness x and time t, the model is `x² + A x = B t + x0² + A x0`, with `A = B / (B/A)`. The parabolic constant B has units µm²/hour and the linear constant B/A has units µm/hour. The fit uses nonlinear least squares in thickness, and reports approximate 95% Student-t intervals from the local covariance matrix. These intervals assume independent, constant-variance errors and a well-identified model. With only six measurements at three times and pooled wafer positions, the included data do not identify B reliably: the fit approaches the linear-growth limit and its symmetric interval can extend below zero despite positive fitting bounds. Treat that interval as a warning, not a physical range; more times, especially thicker oxides, and independent runs are needed. Deal-Grove is also less accurate for very thin dry oxides.
 
 The implementation is in `semiconductor_doe/oxidation.py` and `semiconductor_doe/experiment.py`; the command and plots are in `semiconductor_doe/__main__.py`. The tests recover known oxidation and experiment parameters, check uncertainty and verify recipe constraints. GitHub Actions installs the package, runs the tests and executes the example on Linux.
+
+
+I ran all four tests during the move, and all four passed. The checks cover parameter recovery, recipe constraints and a noisy-data uncertainty interval. These small checks do not validate a manufacturing process.
